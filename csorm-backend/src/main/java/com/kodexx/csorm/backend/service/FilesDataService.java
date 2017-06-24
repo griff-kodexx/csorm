@@ -7,6 +7,7 @@ package com.kodexx.csorm.backend.service;
 
 import com.kodexx.csorm.backend.service.DataService;
 import com.kodexx.csorm.backend.data.File;
+import com.kodexx.csorm.backend.database.CheckDatabase;
 import com.mongodb.MongoClient;
 import java.util.Collection;
 import org.mongodb.morphia.Datastore;
@@ -18,13 +19,13 @@ import org.mongodb.morphia.Morphia;
  * @author kodexx
  */
 public class FilesDataService extends DataService{
-    
+    private CheckDatabase theDatabase = new CheckDatabase();
     final Morphia morphia = new Morphia();
-    final Datastore datastore = morphia.createDatastore(new MongoClient(), "csorm");
+    final Datastore datastore = morphia.createDatastore(new MongoClient(theDatabase.getAddress(), theDatabase.getPort()), "csorm");    
     
     private FilesDataService(){
         morphia.mapPackage("com.kodexx.csorm.backend.data");
-        
+        datastore.ensureIndexes();
     }
     
     
