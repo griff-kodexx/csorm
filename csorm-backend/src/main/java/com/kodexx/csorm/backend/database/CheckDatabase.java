@@ -4,8 +4,6 @@
 
 package com.kodexx.csorm.backend.database;
 
-
-import com.kodexx.csorm.authentication.HashPasswords;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
@@ -18,17 +16,30 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class CheckDatabase{
+    private static MongoClient mongoClient;   //for multiples access?? Make more than one object
 	@SuppressWarnings("deprecation")
-        public String realpass;         
+        public String realpass;
         private String address="localhost";
         private int port=27017;
         private String database = "csorm";
-        private String collection = null;        
-        private static MongoClient mongoClient;   //for multiples access?? Make more than one object
+        private String collection = null;
         protected BasicDBObject basicDBObject = new BasicDBObject();
         protected boolean userIsPriviledged;
-        
-        
+
+        public String getAddress() {
+            return address;
+        }
+
+        public int getPort() {
+            return port;
+        }
+
+        public String getDatabase() {
+            return database;
+        }
+
+
+
         //use this method if the parameters are the predefined above
         protected void setParameters(String collection){
             this.collection = collection;
@@ -40,49 +51,49 @@ public class CheckDatabase{
             this.database = database;
             this.collection = collection;
         }
-        
+
         //need to set up authentication on mongo for security
 	protected DBCollection connectDB(){
             mongoClient =  new MongoClient(address,port);
             DB db = mongoClient.getDB(database); //make this global perhaps to reduce number of connection to mongodb
-            DBCollection dbCollection = db.getCollection(collection);            
-            //mongoClient.close();             
+            DBCollection dbCollection = db.getCollection(collection);
+            //mongoClient.close();
             return dbCollection;
         }
         protected void closeConnection(){
             CheckDatabase.mongoClient.close(); //could it kill all the unnecessary connections? Bado iko implented below
-            
+
         }
-        
+
         protected boolean login(final String submittedUsername, final String submittedpassword){
-           
+
             setParameters("users");
-            
+
             boolean flag = false;
             BasicDBObject searchQuery = new BasicDBObject();
-            
+
             searchQuery.put("ID",submittedUsername);
-           
-            
-            DBCursor cursor = connectDB().find(searchQuery);     
-            
+
+
+            DBCursor cursor = connectDB().find(searchQuery);
+
             try{
                 DBObject oneRecord = cursor.next();
-                //LoggedIn Name to be displayed = (String) oneRecord.get("First Name") + " " + (String) oneRecord.get("Last Name");                
+                //LoggedIn Name to be displayed = (String) oneRecord.get("First Name") + " " + (String) oneRecord.get("Last Name");
                 String dbpassword = (String) oneRecord.get("Password");
                 String dbclearance = (String) oneRecord.get("Clearance");
-            
+
             try {
                 if( !HashPasswords.validatePassword(submittedpassword, dbpassword)){
                     System.out.println("Wrong details");
                     flag = false;
                 }
                 else{
-                    
+
                     if(null == dbclearance) {
                         System.out.println("Return null from db...no record");
                     } else {
-                        
+
                         switch (dbclearance) {
                             case "Admin":
                                 System.out.println("User is Admin");  //such output should redirected to the log file with other login details e.g time
@@ -102,8 +113,8 @@ public class CheckDatabase{
                         }
                     }
                 }
-                
-                
+
+
             } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
                 Logger.getLogger(CheckDatabase.class.getName()).log(Level.SEVERE, null, ex); //say whaaaat?
             }
@@ -111,14 +122,13 @@ public class CheckDatabase{
             catch(Exception NoSuchElementException){
                 flag = false;
                 //do something..
-            }  
-            
+            }
+
             //closeConnection(); //kill connection to database and return authentication flag
             closeConnection();
             return flag;
         }
-        
+
 }
-        
-  
- 
+
+
