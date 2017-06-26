@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.kodexx.csorm.groups;
 
 import com.vaadin.icons.VaadinIcons;
@@ -30,38 +25,32 @@ import java.io.OutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
-
-/**
- *
- * @author kodexx
- */
 public class GroupsView extends VerticalLayout implements View,Upload.Receiver,Upload.SucceededListener, Upload.ProgressListener {
-    
+
     public static final String VIEW_NAME = "Groups";
     private ByteArrayOutputStream outputStream;
     final Image image = new Image("Uploaded image");
     ProgressBar bar = new ProgressBar(0.0f);
-    
-    
-    
+
+
+
     public GroupsView() {
         CustomLayout aboutContent = new CustomLayout("comingsoon");
         aboutContent.setStyleName("about-content");
-        
+
         Upload upload = new Upload();
         upload.setImmediateMode(false);
         upload.setButtonCaption("upload now");
         upload.setReceiver(this);
         upload.addSucceededListener(this);
         upload.addProgressListener(this);
-        
-        
+
+
         HorizontalLayout hr = new HorizontalLayout();
         hr.setSizeFull();
         hr.addComponent(upload);
         hr.addComponent(bar);
-        
+
         hr.addComponent(image);
         addComponent(hr);
         setComponentAlignment(hr, Alignment.BOTTOM_RIGHT);
@@ -78,23 +67,23 @@ public class GroupsView extends VerticalLayout implements View,Upload.Receiver,U
         addComponent(aboutContent);
         setComponentAlignment(aboutContent, Alignment.MIDDLE_CENTER);
     }
-    
+
      private void showNotification(Notification notification) {
         // keep the notification visible a little while after moving the
         // mouse, or until clicked
         notification.setDelayMsec(5000);
-        notification.show(Page.getCurrent()); 
+        notification.show(Page.getCurrent());
         notification.setPosition(Position.TOP_CENTER);
-        
+
     }
-     
+
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
     }
 
     @Override
     public OutputStream receiveUpload(String filename, String mimeType) {
-        this.outputStream = new ByteArrayOutputStream();         
+        this.outputStream = new ByteArrayOutputStream();
         return outputStream;
     }
 
@@ -121,11 +110,11 @@ public class GroupsView extends VerticalLayout implements View,Upload.Receiver,U
 
     @Override
     public void updateProgress(long readBytes, long contentLength) {
-        
+
         //Update the progress bar (bar.setValue()) accordingly
         //how?? sijui
-                
+
     }
-    
-    
+
+
 }

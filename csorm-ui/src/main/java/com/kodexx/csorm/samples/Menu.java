@@ -1,8 +1,5 @@
 package com.kodexx.csorm.samples;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
@@ -22,6 +19,8 @@ import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.Command;
 import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.themes.ValoTheme;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Responsive navigation menu presenting a list of available views to the user.

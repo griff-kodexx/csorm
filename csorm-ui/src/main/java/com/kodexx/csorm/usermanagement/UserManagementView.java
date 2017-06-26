@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.kodexx.csorm.usermanagement;
 
 import com.vaadin.icons.VaadinIcons;
@@ -14,12 +10,8 @@ import com.vaadin.ui.CustomLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
-/**
- *
- * @author kodexx
- */
 public class UserManagementView extends VerticalLayout implements View {
-    
+
     public static final String VIEW_NAME = "User Management";
 
     public UserManagementView() {
@@ -31,7 +23,7 @@ public class UserManagementView extends VerticalLayout implements View {
         usermanagementContent.addComponent(
                 new Label(VaadinIcons.WRENCH.getHtml()
                         +" This section is not yet implemented but will be."
-                        , ContentMode.HTML), "comingsooninfo"); 
+                        , ContentMode.HTML), "comingsooninfo");
 
         setSizeFull();
         setMargin(false);

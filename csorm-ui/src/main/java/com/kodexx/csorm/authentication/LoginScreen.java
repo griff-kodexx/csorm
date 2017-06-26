@@ -1,7 +1,5 @@
 package com.kodexx.csorm.authentication;
 
-import java.io.Serializable;
-
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.server.Page;
 import com.vaadin.shared.Position;
@@ -17,6 +15,7 @@ import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
+import java.io.Serializable;
 
 /**
  * UI content when the user is not logged in yet.
@@ -66,19 +65,19 @@ public class LoginScreen extends CssLayout {
 
     private Component buildLoginForm() {
         FormLayout loginForm = new FormLayout();
-        
+
 
         loginForm.addStyleName("login-form");
         loginForm.setSizeUndefined();
         loginForm.setMargin(false);
-        
+
         loginForm.addComponent(email = new TextField("Email"));
         email.setDescription("Enter the email you registered with");
         email.setWidth(15, Unit.EM);
-        
-        
-        loginForm.addComponent(username = new TextField("Username", "admin"));        
-        username.setWidth(15, Unit.EM);        
+
+
+        loginForm.addComponent(username = new TextField("Username", "admin"));
+        username.setWidth(15, Unit.EM);
         username.setDescription("Enter your username");
         loginForm.addComponent(password = new PasswordField("Password"));
         password.setWidth(15, Unit.EM);
@@ -133,7 +132,7 @@ public class LoginScreen extends CssLayout {
                 backToLogin.setVisible(false);
             }
         });
-        
+
         resetPass.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent event) {
@@ -177,9 +176,9 @@ public class LoginScreen extends CssLayout {
         // keep the notification visible a little while after moving the
         // mouse, or until clicked
         notification.setDelayMsec(5000);
-        notification.show(Page.getCurrent()); 
+        notification.show(Page.getCurrent());
         notification.setPosition(Position.TOP_CENTER);
-        
+
     }
 
     public interface LoginListener extends Serializable {

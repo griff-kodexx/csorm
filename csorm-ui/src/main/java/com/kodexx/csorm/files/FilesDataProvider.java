@@ -1,39 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.kodexx.csorm.files;
 
-import com.kodexx.csorm.backend.service.DataService;
 import com.kodexx.csorm.backend.data.File;
+import com.kodexx.csorm.backend.service.DataService;
 import com.vaadin.data.provider.AbstractDataProvider;
 import com.vaadin.data.provider.Query;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.stream.Stream;
-import org.bson.types.ObjectId;
 
-/**
- *
- * @author kodexx
- */
-public class FilesDataProvider 
+public class FilesDataProvider
         extends AbstractDataProvider<File, String> {
-    
+
      /** Text filter that can be changed separately. */
     private String filterText = "";
 
-    
+
     /**
      * Store given file to the backing data service.
-     * 
+     *
      * @param file
      */
 
      public void save(File file){
          boolean newFile = file.getId() == -1;
-         
+
          DataService.get().updateFile(file);
          if(newFile){
              refreshAll();
@@ -41,10 +31,10 @@ public class FilesDataProvider
              refreshItem(file);
          }
      }
-     
+
      /**
      * Delete given file from the backing data service.
-     * 
+     *
      * @param file
      *            the file to be deleted
      */
@@ -52,12 +42,12 @@ public class FilesDataProvider
         DataService.get().deleteFile(file.getId());
         refreshAll();
     }
-    
+
     /**
      * Sets the filter to use for the this data provider and refreshes data.
      * <p>
      * Filter is compared for product name, availability and category.
-     * 
+     *
      * @param filterText
      *           the text to filter by, never null
      */
@@ -67,17 +57,17 @@ public class FilesDataProvider
             return;
         }
         this.filterText = filterText.trim();
-        
+
         refreshAll();
     }
-    
+
     @Override
     public Integer getId(File file){
         Objects.requireNonNull(file, "Cannot provide id for a null file");
-        
+
         return file.getId();
     }
-    
+
     @Override
     public boolean isInMemory() {
         return true;
@@ -98,7 +88,7 @@ public class FilesDataProvider
                     || passessFilter(file.getTitle(), filterText)
                     || passessFilter(file.getDescription(), filterText));
     }
-    
+
     private boolean passessFilter(Object object, String filterText){
         return object != null && object.toString().toLowerCase(Locale.ENGLISH)
                 .contains(filterText);
