@@ -1,7 +1,7 @@
 package com.kodexx.csorm.client;
 
+import com.kodexx.csorm.samples.AttributeExtension;
 import com.vaadin.shared.JavaScriptExtensionState;
-
 import java.util.HashMap;
 
 /**

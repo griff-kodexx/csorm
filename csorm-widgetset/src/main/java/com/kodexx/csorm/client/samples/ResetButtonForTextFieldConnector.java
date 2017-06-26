@@ -7,18 +7,17 @@ import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.event.logical.shared.AttachEvent;
 import com.google.gwt.user.client.DOM;
-import com.vaadin.client.ComponentConnector;
+import com.kodexx.csorm.samples.ResetButtonForTextField;
 import com.vaadin.client.ServerConnector;
 import com.vaadin.client.communication.StateChangeEvent;
 import com.vaadin.client.extensions.AbstractExtensionConnector;
 import com.vaadin.client.ui.VTextField;
 import com.vaadin.client.ui.textfield.AbstractTextFieldConnector;
 import com.vaadin.shared.ui.Connect;
-import com.kodexx.csorm.samples.ResetButtonForTextField;
 
 /**
  * Client side implementation of {@link ResetButtonForTextField}.
- * 
+ *
  * @see <a href="https://vaadin.com/blog/-/blogs/2656782">Extending components
  *      in Vaadin 7</a>
  */
