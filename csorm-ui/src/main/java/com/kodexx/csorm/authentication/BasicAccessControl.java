@@ -1,12 +1,7 @@
-    package com.kodexx.csorm.authentication;
+package com.kodexx.csorm.authentication;
 
 import com.kodexx.csorm.backend.database.CheckDatabase;
 
-/**
- * Default mock implementation of {@link AccessControl}. This implementation
- * accepts any string as a password, and considers the user "admin" as the only
- * administrator.
- */
 public class BasicAccessControl extends CheckDatabase implements AccessControl {
 
     @Override
