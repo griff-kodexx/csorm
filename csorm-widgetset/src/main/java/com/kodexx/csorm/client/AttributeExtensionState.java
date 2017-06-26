@@ -1,4 +1,4 @@
-package com.kodexx.csorm.samples;
+package com.kodexx.csorm.client;
 
 import com.vaadin.shared.JavaScriptExtensionState;
 

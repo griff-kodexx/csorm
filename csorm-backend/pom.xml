@@ -25,6 +25,12 @@
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
+        <!-- Object Document Mapping -->
+        <dependency>
+            <groupId>org.mongodb.morphia</groupId>
+            <artifactId>morphia</artifactId>
+            <version>1.3.2</version>
+        </dependency>        
     </dependencies>
 
     <build>

@@ -8,11 +8,6 @@ import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 import org.mongodb.morphia.query.Query;
 
-
-/**
- *
- * @author kodexx
- */
 public class FilesDataService extends DataService{
 
     private static FilesDataService INSTANCE;

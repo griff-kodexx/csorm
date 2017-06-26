@@ -1,12 +1,12 @@
 package com.kodexx.csorm.samples.backend;
 
-import org.junit.Before;
-import org.junit.Test;
-import com.kodexx.csorm.samples.backend.data.File;
-import com.kodexx.csorm.samples.backend.mock.MockDataService;
-
+import com.kodexx.csorm.backend.data.File;
+import com.kodexx.csorm.backend.service.DataService;
+import com.kodexx.csorm.backend.service.FilesDataService;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * Simple unit test for the back-end data service.
@@ -17,21 +17,16 @@ public class DataServiceTest {
 
     @Before
     public void setUp() throws Exception {
-        service = MockDataService.getInstance();
+        service = FilesDataService.getInstance();
     }
 
     @Test
-    public void testDataServiceCanFetchProducts() throws Exception {
+    public void testDataServiceCanFetchFiles() throws Exception {
         assertFalse(service.getAllFiles().isEmpty());
     }
 
     @Test
-    public void testDataServiceCanFetchCategories() throws Exception {
-        assertFalse(service.getAllCategories().isEmpty());
-    }
-
-    @Test
-    public void testUpdateProduct_updatesTheProduct() throws Exception {
+    public void testUpdateFile_updatesTheFile() throws Exception {
         File p = service.getAllFiles().iterator().next();
         p.setTitle("My Test Name");
         service.updateFile(p);

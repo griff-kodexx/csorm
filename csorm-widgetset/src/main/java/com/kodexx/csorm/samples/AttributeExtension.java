@@ -1,5 +1,6 @@
 package com.kodexx.csorm.samples;
 
+import com.kodexx.csorm.client.AttributeExtensionState;
 import com.vaadin.annotations.JavaScript;
 import com.vaadin.server.AbstractJavaScriptExtension;
 import com.vaadin.ui.TextField;
