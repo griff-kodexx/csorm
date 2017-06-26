@@ -37,8 +37,7 @@ public class MainScreen extends HorizontalLayout {
         menu = new Menu(navigator);
         
         //Past Papers View
-        
-        
+                
         //Files view
         menu.addView(new FilesView(), FilesView.VIEW_NAME,FilesView.VIEW_NAME,
                 VaadinIcons.FILE);        

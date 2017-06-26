@@ -2,8 +2,8 @@ package com.kodexx.csorm.files;
 
 
 import com.kodexx.csorm.samples.ResetButtonForTextField;
-import com.kodexx.csorm.samples.backend.DataService;
-import com.kodexx.csorm.samples.backend.data.File;
+import com.kodexx.csorm.backend.service.DataService;
+import com.kodexx.csorm.backend.data.File;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -59,7 +59,8 @@ public class FilesView extends CssLayout implements View{
     public HorizontalLayout createTopBar(){
         filter = new TextField();
         filter.setStyleName("filter-textfield");
-        filter.setPlaceholder("Filter name, availability or category");
+        filter.setPlaceholder("Filter by Unit Code, Title or Description");
+        filter.setCaption("Search for File");
         ResetButtonForTextField.extend(filter);
         
         //Apply the filter to the grid's data provider. TextField value isn never null
@@ -74,7 +75,7 @@ public class FilesView extends CssLayout implements View{
         topLayout.setWidth("100%");
         topLayout.addComponent(filter);
         topLayout.addComponent(newFile);
-        topLayout.setComponentAlignment(filter, Alignment.MIDDLE_CENTER);
+        topLayout.setComponentAlignment(filter, Alignment.TOP_LEFT);
         topLayout.setExpandRatio(filter,1);
         topLayout.setStyleName("top-bar");
         return topLayout;                
@@ -99,6 +100,7 @@ public class FilesView extends CssLayout implements View{
 
     public void clearSelection() {
         grid.getSelectionModel().deselectAll();
+        form.setVisible(false);
     }
 
     public void selectRow(File row) {
@@ -121,6 +123,7 @@ public class FilesView extends CssLayout implements View{
     public void editFile(File file){
         if(file != null){
             form.addStyleName("visible");
+            form.setVisible(true);
             form.setEnabled(true);
         }else{
             form.removeStyleName("visible");

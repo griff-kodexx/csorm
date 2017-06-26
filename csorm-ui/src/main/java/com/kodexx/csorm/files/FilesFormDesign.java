@@ -10,7 +10,9 @@ import com.vaadin.annotations.DesignRoot;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.ProgressBar;
 import com.vaadin.ui.TextField;
+import com.vaadin.ui.Upload;
 import com.vaadin.ui.declarative.Design;
 
 /**
@@ -24,8 +26,9 @@ import com.vaadin.ui.declarative.Design;
 public class FilesFormDesign extends CssLayout{
     protected TextField title;
     protected TextField code;  
-    protected TextField type;
-    protected Label uploadarea;
+    protected TextField description;
+    protected Upload upload;
+    protected ProgressBar bar;
     protected Button download;
     protected Button view;
     protected Button save;

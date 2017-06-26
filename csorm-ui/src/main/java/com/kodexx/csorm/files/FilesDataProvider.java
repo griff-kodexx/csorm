@@ -5,13 +5,14 @@
  */
 package com.kodexx.csorm.files;
 
-import com.kodexx.csorm.samples.backend.DataService;
-import com.kodexx.csorm.samples.backend.data.File;
+import com.kodexx.csorm.backend.service.DataService;
+import com.kodexx.csorm.backend.data.File;
 import com.vaadin.data.provider.AbstractDataProvider;
 import com.vaadin.data.provider.Query;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.stream.Stream;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -93,7 +94,9 @@ public class FilesDataProvider
            return DataService.get().getAllFiles().stream();
        }
        return DataService.get().getAllFiles().stream().filter(
-               file -> passessFilter(file.getTitle(), filterText));
+               file -> passessFilter(file.getCode(), filterText)
+                    || passessFilter(file.getTitle(), filterText)
+                    || passessFilter(file.getDescription(), filterText));
     }
     
     private boolean passessFilter(Object object, String filterText){

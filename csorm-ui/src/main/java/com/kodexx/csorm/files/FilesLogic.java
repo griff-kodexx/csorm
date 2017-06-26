@@ -6,18 +6,18 @@
 package com.kodexx.csorm.files;
 
 import com.kodexx.csorm.MyUI;
-import com.kodexx.csorm.samples.backend.DataService;
-import com.kodexx.csorm.samples.backend.data.File;
+import com.kodexx.csorm.backend.service.DataService;
+import com.kodexx.csorm.backend.data.File;
 import com.vaadin.server.Page;
 import java.io.Serializable;
 
 /**
  *
- * @author kodexx
+ * 
  */
 public class FilesLogic implements Serializable{
     private FilesView view;
-
+    
     public FilesLogic(FilesView simpleFilesView) {
         view = simpleFilesView;
     }
@@ -26,7 +26,7 @@ public class FilesLogic implements Serializable{
     
     public void init(){
         editFile(null);
-        //Hide and disable if not admin (or not permitted)
+            //Hide and disable if not admin (or not permitted)
         if(!MyUI.get().getAccessControl().isUserInRole("admin")){
             view.setNewFileEnabled(false);            
         }
@@ -34,7 +34,7 @@ public class FilesLogic implements Serializable{
     
     public void cancelFile(){
         setFragmentParameter("");
-        view.clearSelection();
+        view.clearSelection();        
     }
     
     
@@ -59,6 +59,7 @@ public class FilesLogic implements Serializable{
         if(fileId != null || !fileId.isEmpty()){
             if(fileId.equals("new")){
                 newFile();
+            }else{
                 //ensure it is selected even when coming directly from login
                 try{
                     int fid = Integer.parseInt(fileId);
@@ -76,7 +77,7 @@ public class FilesLogic implements Serializable{
     }
     
     public void saveFile(File file){
-        view.showSaveNotification(file.getTitle()+ "(" + file.getId() + ") update");
+        view.showSaveNotification(file.getTitle()+ "(" + file.getId() + ") updated");
         view.clearSelection();
         view.updateFile(file);
         setFragmentParameter("");
@@ -85,6 +86,9 @@ public class FilesLogic implements Serializable{
     public void deleteFile(File file){
         view.showSaveNotification(file.getTitle()+ "("
          + file.getId() + ") removed");
+        view.clearSelection();
+        view.removeFile(file);
+        setFragmentParameter("");
     }
     
     public void editFile(File file){
@@ -92,7 +96,7 @@ public class FilesLogic implements Serializable{
             setFragmentParameter("");
         }else{
             setFragmentParameter(file.getId() + "");
-        }
+        }        
         view.editFile(file);
     }
     
@@ -108,53 +112,3 @@ public class FilesLogic implements Serializable{
     }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
