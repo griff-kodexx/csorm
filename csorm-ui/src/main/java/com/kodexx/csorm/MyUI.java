@@ -56,7 +56,7 @@ public class MyUI extends UI {
         addStyleName(ValoTheme.UI_WITH_MENU);
         setContent(new MainScreen(MyUI.this));
         
-        //change this to a better landing page
+        //change this to a better landing
         getNavigator().navigateTo(FilesView.VIEW_NAME);
     }
 

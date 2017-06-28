@@ -18,7 +18,7 @@ public class FilesLogic implements Serializable{
     public void init(){
         editFile(null);
             //Hide and disable if not admin (or not permitted)
-        if(!MyUI.get().getAccessControl().isUserInRole("admin")){
+        if(!MyUI.get().getAccessControl().isUserInRole(MyUI.get().getAccessControl().getPrincipalName())){
             view.setNewFileEnabled(false);
         }
     }
@@ -98,7 +98,7 @@ public class FilesLogic implements Serializable{
     }
 
     public void rowSelected(File file){
-        if(MyUI.get().getAccessControl().isUserInRole("admin")){
+        if(MyUI.get().getAccessControl().isUserInRole(MyUI.get().getAccessControl().getPrincipalName())){
         view.editFile(file);
     }
     }

@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="package-mapping" content="x:com.kodexx.csorm.users" />
+</head>
+<body>
+ <v-css-layout id="product-form" style-name="product-form-wrapper">
+    <v-vertical-layout height-full margin=false style-name="form-layout">
+        <vaadin-text-field caption="Username" _id="username" width-full />
+        <v-horizontal-layout width-full>
+            <vaadin-text-field caption="Password" _id="password" width-full />
+            <v-text-field _id="email" caption="Email" width-full />
+        </v-horizontal-layout>
+        <v-horizontal-layout width-full>
+            <vaadin-text-field caption="First Name" _id="firstName" width-full />
+            <v-text-field _id="lastName" caption="Last Name" width-full />
+         </v-horizontal-layout>   
+        <v-horizontal-layout width-full>
+        <vaadin-upload caption="Upload Profile Picture" id="upload"/>
+        <vaadin-progress-bar id="bar"/>
+        </v-horizontal-layout>
+        <v-css-layout :expand style-name="expander" />        
+        <v-button style-name="primary" _id="save">Save</v-button>
+        <v-button style-name="cancel" _id="discard">Discard Changes</v-button>
+        <v-button style-name="cancel" _id="cancel" click-shortcut="escape">Cancel</v-button>
+        <v-button style-name="danger" _id="delete">Delete</v-button>
+    </v-vertical-layout>
+</v-css-layout> 
+</body>
+</html>

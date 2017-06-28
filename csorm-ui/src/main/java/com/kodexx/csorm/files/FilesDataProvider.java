@@ -46,7 +46,7 @@ public class FilesDataProvider
     /**
      * Sets the filter to use for the this data provider and refreshes data.
      * <p>
-     * Filter is compared for product name, availability and category.
+     * Filter is compared for file code, title or description
      *
      * @param filterText
      *           the text to filter by, never null

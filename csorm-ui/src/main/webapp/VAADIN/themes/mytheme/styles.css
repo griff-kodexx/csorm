@@ -12935,6 +12935,378 @@ div.v-layout.v-horizontal.v-widget {
 	transform: translatex(100%);
 }
 
+.mytheme .user-form-wrapper {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	z-index: 100;
+	width: 288px;
+	height: 100%;
+	overflow: auto;
+	padding: 18px 18px;
+	background-color: #3b3f42;
+	color: #d7d9da;
+}
+
+.mytheme .user-form-wrapper .v-textfield {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-ms-appearance: none;
+	-o-appearance: none;
+	appearance: none;
+	-webkit-user-select: text;
+	-moz-user-select: text;
+	-ms-user-select: text;
+	user-select: text;
+	margin: 0;
+	font: inherit;
+	
+	font-weight: 400;
+	line-height: normal;
+	height: 32px;
+	border-radius: 4px;
+	padding: 4px 8px;
+	border: 1px solid #252729;
+	background: #2f3235;
+	color: #c3c6c8;
+	-webkit-box-shadow: inset 0 1px 0 #2d3033, 0 1px 0 rgba(255, 255, 255, 0.1);
+	box-shadow: inset 0 1px 0 #2d3033, 0 1px 0 rgba(255, 255, 255, 0.1);
+	-webkit-transition: box-shadow 180ms, border 180ms;
+	-moz-transition: box-shadow 180ms, border 180ms;
+	transition: box-shadow 180ms, border 180ms;
+}
+
+.mytheme .user-form-wrapper .v-textfield.v-disabled {
+	opacity: 0.5;
+	filter: alpha(opacity=50) ;
+}
+
+.mytheme .user-form-wrapper .v-textfield:focus {
+	outline: none;
+	-webkit-transition: none;
+	-moz-transition: none;
+	transition: none;
+	border-color: #60a0ea;
+	-webkit-box-shadow: 0 0 0 2px rgba(96, 160, 234, 0.5), inset 0 1px 0 #2d3033, 0 1px 0 rgba(255, 255, 255, 0.1);
+	box-shadow: 0 0 0 2px rgba(96, 160, 234, 0.5), inset 0 1px 0 #2d3033, 0 1px 0 rgba(255, 255, 255, 0.1);
+	-webkit-box-shadow: 0 0 0 2px rgba(96, 160, 234, 0.5);
+	box-shadow: 0 0 0 2px rgba(96, 160, 234, 0.5);
+}
+
+.mytheme .user-form-wrapper .v-textfield[class*="prompt"] {
+	color: #777c80;
+}
+
+.mytheme .user-form-wrapper .v-checkbox {
+	position: relative;
+	line-height: 16px;
+	white-space: nowrap;
+}
+
+.mytheme .user-form-wrapper .v-checkbox.v-has-width label {
+	white-space: normal;
+}
+
+:root .mytheme .user-form-wrapper .v-checkbox {
+	padding-left: 21px;
+}
+
+:root .mytheme .user-form-wrapper .v-checkbox label {
+	-webkit-tap-highlight-color: transparent;
+	-webkit-touch-callout: none;
+	cursor: pointer;
+	display: inline-block;
+}
+
+:root .mytheme .user-form-wrapper .v-checkbox > input {
+	position: absolute;
+	clip: rect(0, 0, 0, 0);
+	left: 0.2em;
+	top: 0.2em;
+	z-index: 0;
+	margin: 0;
+}
+
+:root .mytheme .user-form-wrapper .v-checkbox > input:focus ~ label:before {
+	border: 1px solid #414649;
+	-webkit-box-shadow: 0 0 0 2px rgba(96, 160, 234, 0.5);
+	box-shadow: 0 0 0 2px rgba(96, 160, 234, 0.5);
+	-webkit-box-shadow: 0 0 0 2px rgba(96, 160, 234, 0.5), inset 0 1px 0 #727272, inset 0 -1px 0 #454a4e, 0 2px 3px rgba(0, 0, 0, 0.05);
+	box-shadow: 0 0 0 2px rgba(96, 160, 234, 0.5), inset 0 1px 0 #727272, inset 0 -1px 0 #454a4e, 0 2px 3px rgba(0, 0, 0, 0.05);
+}
+
+:root .mytheme .user-form-wrapper .v-checkbox > input ~ label:before, :root .mytheme .user-form-wrapper .v-checkbox > input ~ label:after {
+	content: "";
+	display: inline-block;
+	box-sizing: border-box;
+	width: 16px;
+	height: 16px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-radius: 4px;
+	font-size: 12px;
+	text-align: center;
+}
+
+:root .mytheme .user-form-wrapper .v-checkbox > input ~ label:before {
+	height: 16px;
+	padding: 0 8px;
+	color: #eeeeef;
+	font-weight: 500;
+	
+	
+	border-radius: 4px;
+	border: 1px solid #414649;
+	border-top-color: #464b4f;
+	border-bottom-color: #383c3f;
+	background-color: #53595d;
+	background-image: -webkit-linear-gradient(top, #596064 2%, #484d51 98%);
+	background-image: linear-gradient(to bottom,#596064 2%, #484d51 98%);
+	-webkit-box-shadow: inset 0 1px 0 #727272, inset 0 -1px 0 #454a4e, 0 2px 3px rgba(0, 0, 0, 0.05);
+	box-shadow: inset 0 1px 0 #727272, inset 0 -1px 0 #454a4e, 0 2px 3px rgba(0, 0, 0, 0.05);
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.05);
+	padding: 0;
+	height: 16px;
+}
+
+:root .mytheme .user-form-wrapper .v-checkbox > input ~ label:after {
+	content: "\f00c";
+	font-family: ThemeIcons;
+	color: transparent;
+	-webkit-transition: color 100ms;
+	-moz-transition: color 100ms;
+	transition: color 100ms;
+}
+
+:root .mytheme .user-form-wrapper .v-checkbox > input:active ~ label:after {
+	background-color: rgba(39, 45, 49, 0.2);
+}
+
+:root .mytheme .user-form-wrapper .v-checkbox > input:checked ~ label:after {
+	color: #60a0ea;
+}
+
+.mytheme .user-form-wrapper .v-checkbox > .v-icon, .mytheme .user-form-wrapper .v-checkbox > label .v-icon {
+	margin: 0 5px 0 3px;
+	min-width: 1em;
+	cursor: pointer;
+}
+
+.mytheme .user-form-wrapper .v-checkbox.v-disabled  > label, .mytheme .user-form-wrapper .v-checkbox.v-disabled  > .v-icon {
+	cursor: default;
+	opacity: 0.5;
+	filter: alpha(opacity=50) ;
+}
+
+.mytheme .user-form-wrapper .v-checkbox.v-disabled  > label > .v-icon {
+	cursor: default;
+}
+
+:root .mytheme .user-form-wrapper .v-checkbox.v-disabled > input:active ~ label:after {
+	background: transparent;
+}
+
+.mytheme .user-form-wrapper .v-checkbox.v-readonly  > label, .mytheme .user-form-wrapper .v-checkbox.v-readonly  > .v-icon {
+	cursor: default;
+}
+
+.mytheme .user-form-wrapper .v-checkbox.v-readonly  > label > .v-icon {
+	cursor: default;
+}
+
+:root .mytheme .user-form-wrapper .v-checkbox.v-readonly > input:active ~ label:after {
+	background: transparent;
+}
+
+:root .mytheme .user-form-wrapper .v-checkbox.v-readonly > input ~ label:after {
+	opacity: 0.5;
+	filter: alpha(opacity=50) ;
+}
+
+.mytheme .user-form-wrapper .v-filterselect {
+	height: 32px;
+	border-radius: 4px;
+}
+
+.mytheme .user-form-wrapper .v-filterselect [class*="input"] {
+	box-sizing: border-box;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-ms-appearance: none;
+	-o-appearance: none;
+	appearance: none;
+	-webkit-user-select: text;
+	-moz-user-select: text;
+	-ms-user-select: text;
+	user-select: text;
+	margin: 0;
+	font: inherit;
+	
+	font-weight: 400;
+	line-height: normal;
+	height: 32px;
+	border-radius: 4px;
+	padding: 4px 8px;
+	border: 1px solid #2e3134;
+	background-color: #53595d;
+	background-image: -webkit-linear-gradient(top, #596064 2%, #484d51 98%);
+	background-image: linear-gradient(to bottom,#596064 2%, #484d51 98%);
+	color: #cfd0d2;
+	-webkit-box-shadow: inset 0 1px 0 #727272, inset 0 -1px 0 #454a4e, 0 1px 0 rgba(255, 255, 255, 0.1);
+	box-shadow: inset 0 1px 0 #727272, inset 0 -1px 0 #454a4e, 0 1px 0 rgba(255, 255, 255, 0.1);
+	-webkit-transition: box-shadow 180ms, border 180ms;
+	-moz-transition: box-shadow 180ms, border 180ms;
+	transition: box-shadow 180ms, border 180ms;
+	width: 100% !important;
+	height: 100%;
+	padding-right: 33px;
+	border-radius: inherit;
+}
+
+.mytheme .user-form-wrapper .v-filterselect [class*="input"].v-disabled {
+	opacity: 0.5;
+	filter: alpha(opacity=50) ;
+}
+
+.mytheme .user-form-wrapper .v-filterselect [class*="input"]:focus {
+	outline: none;
+	-webkit-transition: none;
+	-moz-transition: none;
+	transition: none;
+	border-color: #60a0ea;
+	-webkit-box-shadow: 0 0 0 2px rgba(96, 160, 234, 0.5), inset 0 1px 0 #727272, inset 0 -1px 0 #454a4e, 0 1px 0 rgba(255, 255, 255, 0.1);
+	box-shadow: 0 0 0 2px rgba(96, 160, 234, 0.5), inset 0 1px 0 #727272, inset 0 -1px 0 #454a4e, 0 1px 0 rgba(255, 255, 255, 0.1);
+	-webkit-box-shadow: 0 0 0 2px rgba(96, 160, 234, 0.5);
+	box-shadow: 0 0 0 2px rgba(96, 160, 234, 0.5);
+}
+
+.mytheme .user-form-wrapper .v-filterselect [class*="input"][class*="prompt"] {
+	color: #8e949a;
+}
+
+.mytheme .user-form-wrapper .v-filterselect .v-icon + [class*="input"] {
+	padding-left: 32px;
+}
+
+.mytheme .user-form-wrapper .v-filterselect img.v-icon {
+	max-height: 32px;
+	margin-left: 8px;
+}
+
+.mytheme .user-form-wrapper .v-filterselect span.v-icon {
+	color: #cfd0d2;
+	width: 32px;
+	line-height: 1;
+	padding-top: 0.12em;
+}
+
+.mytheme .user-form-wrapper .v-filterselect[class*="prompt"] > [class*="input"] {
+	color: #8e949a;
+}
+
+.mytheme .user-form-wrapper .v-filterselect [class$="button"] {
+	-webkit-tap-highlight-color: transparent;
+	-webkit-touch-callout: none;
+	cursor: pointer;
+	position: absolute;
+	width: 32px;
+	top: 1px;
+	right: 1px;
+	bottom: 1px;
+	border-left: 1px solid #4a4f53;
+	color: #919497;
+	border-radius: 0 3px 3px 0;
+}
+
+.mytheme .user-form-wrapper .v-filterselect [class$="button"]:before {
+	font-family: ThemeIcons;
+	content: "\f078";
+	-webkit-transition: color 140ms;
+	-moz-transition: color 140ms;
+	transition: color 140ms;
+	position: absolute;
+	width: 32px;
+	text-align: center;
+	top: 50%;
+	line-height: 1;
+	margin-top: -0.47em;
+}
+
+.mytheme .user-form-wrapper .v-filterselect [class$="button"]:hover:before {
+	color: #cfd0d2;
+}
+
+.mytheme .user-form-wrapper .v-filterselect [class$="button"]:active:after {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	border-radius: inherit;
+	background-color: rgba(39, 45, 49, 0.2);
+}
+
+.mytheme .user-form-wrapper .v-filterselect.v-disabled {
+	opacity: 0.5;
+	filter: alpha(opacity=50) ;
+}
+
+.mytheme .user-form-wrapper .v-filterselect.v-disabled [class$="button"] {
+	cursor: default;
+	pointer-events: none;
+}
+
+.mytheme .user-form-wrapper .v-filterselect.v-disabled [class$="button"]:active:after {
+	display: none;
+}
+
+.mytheme .user-form-wrapper .v-filterselect.v-readonly [class*="input"] {
+	background: #fafafa;
+	color: #464646;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.mytheme .user-form-wrapper .v-filterselect.v-readonly [class*="input"]:focus {
+	box-shadow: none;
+	border-color: #c5c5c5;
+}
+
+.mytheme .user-form-wrapper .v-filterselect.v-readonly [class$="button"] {
+	cursor: default;
+	pointer-events: none;
+}
+
+.mytheme .user-form-wrapper .v-filterselect.v-readonly [class$="button"]:active:after {
+	display: none;
+}
+
+.mytheme .user-form-wrapper .v-button {
+	display: block;
+}
+
+.mytheme .user-form-wrapper .v-caption {
+	color: #9b9fa3;
+}
+
+.mytheme .user-form-wrapper .form-layout > .v-expand > .v-slot:last-child {
+	padding-bottom: 18px;
+}
+
+.mytheme .user-form {
+	right: 0;
+	-webkit-transition: all 300ms;
+	-moz-transition: all 300ms;
+	transition: all 300ms;
+	-webkit-transform: translatex(100%);
+	-moz-transform: translatex(100%);
+	-ms-transform: translatex(100%);
+	-o-transform: translatex(100%);
+	transform: translatex(100%);
+}
+
 .mytheme .visible {
 	-webkit-transform: none;
 	-moz-transform: none;
@@ -13034,30 +13406,34 @@ div.v-layout.v-horizontal.v-widget {
 	width: 100%;
 }
 
-.mytheme .v-ui[width-range~="0-550px"] .crud-view .crud-main-layout {
-	padding: 0 0 0 0;
-}
-
-.mytheme .v-ui[width-range~="0-550px"] .crud-view .crud-main-layout .top-bar {
-	padding: 18px 18px 0 18px;
-}
-
-.mytheme .v-ui[width-range~="0-550px"] .crud-view .crud-main-layout .top-bar .filter-textfield {
+.mytheme .v-ui[width-range~="0-550px"] .product-form-wrapper .user-form-wrapper {
 	width: 100%;
 }
 
-.mytheme .v-ui[width-range~="0-550px"] .about-view {
+.mytheme .v-ui[width-range~="0-550px"] .product-form-wrapper .crud-view .crud-main-layout {
+	padding: 0 0 0 0;
+}
+
+.mytheme .v-ui[width-range~="0-550px"] .product-form-wrapper .crud-view .crud-main-layout .top-bar {
+	padding: 18px 18px 0 18px;
+}
+
+.mytheme .v-ui[width-range~="0-550px"] .product-form-wrapper .crud-view .crud-main-layout .top-bar .filter-textfield {
+	width: 100%;
+}
+
+.mytheme .v-ui[width-range~="0-550px"] .product-form-wrapper .about-view {
 	padding-bottom: 0;
 	padding-top: 0;
 	height: auto;
 	padding: 3.2px;
 }
 
-.mytheme .v-ui[width-range~="0-550px"] .about-view .v-slot-about-content {
+.mytheme .v-ui[width-range~="0-550px"] .product-form-wrapper .about-view .v-slot-about-content {
 	overflow: auto;
 }
 
-.mytheme .v-ui[width-range~="0-550px"] .about-view .about-content {
+.mytheme .v-ui[width-range~="0-550px"] .product-form-wrapper .about-view .about-content {
 	width: 100%;
 	max-width: 100%;
 	height: auto;
@@ -13068,15 +13444,15 @@ div.v-layout.v-horizontal.v-widget {
 	box-shadow: none;
 }
 
-.mytheme .v-ui[width-range~="0-500px"] .valo-menu .v-menubar-user-menu .v-menubar-menuitem-caption {
+.mytheme .v-ui[width-range~="0-550px"] .v-ui[width-range~="0-500px"] .valo-menu .v-menubar-user-menu .v-menubar-menuitem-caption {
 	width: auto;
 }
 
-.mytheme input[type=number]::-webkit-inner-spin-button, .mytheme input[type=number]::-webkit-outer-spin-button {
+.mytheme .v-ui[width-range~="0-550px"] input[type=number]::-webkit-inner-spin-button, .mytheme .v-ui[width-range~="0-550px"] input[type=number]::-webkit-outer-spin-button {
 	-webkit-appearance: none;
 	margin: 0;
 }
 
-.mytheme .align-right {
+.mytheme .v-ui[width-range~="0-550px"] .align-right {
 	text-align: right;
 }

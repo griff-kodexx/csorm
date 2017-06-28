@@ -1,7 +1,6 @@
-package com.kodexx.csorm.files;
+package com.kodexx.csorm.users;
 
-import com.kodexx.csorm.MyUI;
-import com.kodexx.csorm.backend.data.File;
+import com.kodexx.csorm.backend.data.User;
 import com.vaadin.data.BeanValidationBinder;
 import com.vaadin.data.Binder;
 import com.vaadin.navigator.View;
@@ -13,30 +12,26 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  *
- * a form for editing a single file
+ * a form for editing a single user
  */
-public class FileForm extends FilesFormDesign implements View,Upload.Receiver,Upload.SucceededListener, Upload.ProgressListener{
+public class UserForm extends UsersFormDesign implements View,Upload.Receiver,Upload.SucceededListener, Upload.ProgressListener {
 
-    private FilesLogic viewLogic;
-    private Binder<File> binder;
-    private File currentFile;
+    private  UsersLogic viewLogic;
+    private Binder<User> binder;
+    private User currentUser;
     private ByteArrayOutputStream outputStream;
-
-    public FileForm(FilesLogic filesLogic){
+    
+    public UserForm(UsersLogic usersLogic){
         super();
         addStyleName("product-form");
-        viewLogic = filesLogic;
-
-
-        binder = new BeanValidationBinder<>(File.class);
+        viewLogic = usersLogic;
+        
+        binder = new BeanValidationBinder<>(User.class);
         binder.bindInstanceFields(this);
 
         // enable/disable save button while editing
@@ -46,25 +41,22 @@ public class FileForm extends FilesFormDesign implements View,Upload.Receiver,Up
             save.setEnabled(hasChanges && isValid);
             discard.setEnabled(hasChanges);
         });
-
-
+        
         save.addClickListener(event -> {
-            if(currentFile != null && binder.writeBeanIfValid(currentFile)){
-                viewLogic.saveFile(currentFile);
-            }
-        });
-
-        discard.addClickListener(event -> viewLogic.editFile(currentFile));
-        cancel.addClickListener(event -> viewLogic.cancelFile());
-
-        delete.addClickListener(event -> {
-            if(currentFile !=null ){
-                viewLogic.deleteFile(currentFile);
+            if(currentUser != null && binder.writeBeanIfValid(currentUser)){
+                viewLogic.saveUser(currentUser);
             }
         });
         
-        //download
-
+        discard.addClickListener(event -> viewLogic.editUser(currentUser));
+        cancel.addClickListener(event -> viewLogic.cancelUser());
+        
+        delete.addClickListener(event ->{
+            if (currentUser !=null) {
+                viewLogic.deleteUser(currentUser);
+            }
+        });
+        
         //upload area
         //upload = new Upload();
         upload.setReceiver(this);
@@ -72,68 +64,59 @@ public class FileForm extends FilesFormDesign implements View,Upload.Receiver,Up
         upload.addProgressListener(this);
         bar.setCaption("Progress");
         bar.setSizeFull();
-
+        
+        
     }
-
-
-    public void editFile(File file){
-        if(file == null){
-            file = new File();
-        }
-        currentFile = file;
-        binder.readBean(file);
-
-        // Scroll to the top
+    
+    public void editUser(User user){
+        if (user == null) {
+            user = new User();
+        }        
+        currentUser = user;
+        binder.readBean(user);
+        
+        //Scroll to the top
         // As this is not a Panel, using JavaScript
         String scrollScript = "window.document.getElementById('" + getId()
                 + "').scrollTop = 0;";
         Page.getCurrent().getJavaScript().execute(scrollScript);
-
     }
-
+    
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
-
+        
     }
 
     @Override
     public OutputStream receiveUpload(String filename, String mimeType) {
         this.outputStream = new ByteArrayOutputStream();
-        currentFile.setMime(mimeType);
         return outputStream;
     }
 
     @Override
     public void uploadSucceeded(Upload.SucceededEvent event) {
        OutputStream out = null;
-       DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-       Date date = new Date();
-       String filename = "/tmp/"+dateFormat.format(date).toString();
-       currentFile.setPath(filename);
-       currentFile.setUploadedBy(MyUI.get().getAccessControl().getPrincipalName());
-       currentFile.setUploadDate(dateFormat.format(date).toString());
-       bar.setValue(1.0f);
-        java.io.File tfile = new java.io.File(filename);
+        java.io.File tfile = new java.io.File("/tmp/thefilename");
         try {
             out = new FileOutputStream(tfile);
             outputStream.writeTo(out);
-            currentFile.setSize(out.toString()+"Bytes");
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(FileForm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserForm.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(FileForm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserForm.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 out.close();
             } catch (IOException ex) {
-                Logger.getLogger(FileForm.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UserForm.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
 
     @Override
     public void updateProgress(long readBytes, long contentLength) {
-        //Update the progress bar (bar.setValue()) accordingly
+         //Update the progress bar (bar.setValue()) accordingly
         //how?? sijui
     }
+    
 }
