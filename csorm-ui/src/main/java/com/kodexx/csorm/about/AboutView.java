@@ -22,8 +22,8 @@ public class AboutView extends VerticalLayout implements View {
         // layout
         aboutContent.addComponent(
                 new Label(VaadinIcons.INFO_CIRCLE.getHtml()
-                        + " This application is using Vaadin "
-                        + Version.getFullVersion(), ContentMode.HTML), "info");
+                        + " CSORM sytem allows access to computer science resources."
+                        , ContentMode.HTML), "info");
 
         setSizeFull();
         setMargin(false);

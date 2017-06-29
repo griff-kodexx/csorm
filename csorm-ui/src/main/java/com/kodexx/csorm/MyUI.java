@@ -55,7 +55,8 @@ public class MyUI extends UI {
     protected void showMainView() {
         addStyleName(ValoTheme.UI_WITH_MENU);
         setContent(new MainScreen(MyUI.this));
-
+        
+        //change this to a better landing
         getNavigator().navigateTo(FilesView.VIEW_NAME);
     }
 
@@ -65,7 +66,7 @@ public class MyUI extends UI {
     }
 
     @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
-    @VaadinServletConfiguration(ui = MyUI.class, productionMode = false)
+    @VaadinServletConfiguration(ui = MyUI.class, productionMode = false, widgetset = "com.kodexx.csorm.AppWidgetSet")
     public static class MyUIServlet extends VaadinServlet {
     }
 }

@@ -179,6 +179,57 @@ $v-layout-spacing-horizontal: round($v-unit-size / 1.8) !default;
     @include transition(all 300ms);
     @include transform(translatex(100%));
   }
+  
+  .user-form-wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 100;
+    width: round($v-unit-size * 9);
+    height: 100%;
+    overflow: auto;
+    padding: $v-layout-spacing-vertical $v-layout-spacing-horizontal;
+    background-color: $editor-background-color;
+    color: valo-font-color($editor-background-color, 0.8);
+
+    // Set the context color for the style mixins
+    $temp: $v-app-background-color;
+    $v-app-background-color: $editor-background-color;
+
+    .v-textfield {
+      @include valo-textfield-style($background-color: $editor-embed-background-color);
+    }
+
+    .v-checkbox {
+      @include valo-checkbox-style($background-color: $editor-raised-background-color);
+    }
+
+    .v-filterselect {
+      @include valo-combobox-style($background-color: $editor-raised-background-color, $bevel: $v-bevel, $gradient: $v-gradient);
+    }
+
+    // Restore variable
+    $v-app-background-color: $temp;
+
+    .v-button {
+      display: block;
+    }
+
+    .v-caption {
+      color: $editor-caption-font-color;
+    }
+
+    // try to ensure there is space under the last button also on small displays (does not work on IE8)
+    .form-layout > .v-expand > .v-slot:last-child {
+      padding-bottom: $v-layout-spacing-vertical;
+    }
+
+  }
+  .user-form {
+    right: 0;
+    @include transition(all 300ms);
+    @include transform(translatex(100%));
+  }
 
   // Enables animation for opening CRUD editor
   .visible {
@@ -288,6 +339,8 @@ $v-layout-spacing-horizontal: round($v-unit-size / 1.8) !default;
   .v-ui[width-range~="0-550px"] {
     .product-form-wrapper {
       width:100%;
+    .user-form-wrapper {
+      width:100%;
     }
 
     // Remove margins around the grid and reduce top bar margins on small screens
@@ -346,4 +399,5 @@ $v-layout-spacing-horizontal: round($v-unit-size / 1.8) !default;
   	text-align: right;
   }
 
+}
 }

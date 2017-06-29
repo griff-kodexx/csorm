@@ -12,7 +12,7 @@ public class FilesGrid extends Grid<File>{
         addColumn(File::getCode).setCaption("Unit Code");
         addColumn(File::getTitle).setCaption("Unit Title");
         addColumn(File::getDescription).setCaption("Description");
-        addColumn(File::getSize).setCaption("Size");
+        //addColumn(File::getSize).setCaption("Size");
         addColumn(File::getMime).setCaption("File Type");
         addColumn(File::getUploadDate).setCaption("Uploaded On");
         addColumn(File::getUploadedBy).setCaption("Uploaded By");
