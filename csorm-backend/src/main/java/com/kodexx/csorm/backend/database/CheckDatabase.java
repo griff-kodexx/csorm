@@ -65,68 +65,64 @@ public class CheckDatabase{
 
         }
 
-        protected boolean login(final String submittedUsername, final String submittedpassword){
+        public boolean login(final String submittedUsername, final String submittedpassword){
 
+        try {
             setParameters("users");
 
             boolean flag = false;
             BasicDBObject searchQuery = new BasicDBObject();
 
-            searchQuery.put("ID",submittedUsername);
-
-
+            searchQuery.put("username",submittedUsername);
+            
+            
             DBCursor cursor = connectDB().find(searchQuery);
 
-            try{
-                DBObject oneRecord = cursor.next();
-                //LoggedIn Name to be displayed = (String) oneRecord.get("First Name") + " " + (String) oneRecord.get("Last Name");
-                String dbpassword = (String) oneRecord.get("Password");
-                String dbclearance = (String) oneRecord.get("Clearance");
+            //try{
+            DBObject oneRecord = cursor.next();
+            //LoggedIn Name to be displayed = (String) oneRecord.get("First Name") + " " + (String) oneRecord.get("Last Name");
+            String dbpassword = (String) oneRecord.get("password");
+            //String dbclearance = (String) oneRecord.get("Clearance");
 
-            try {
-                if( !HashPasswords.validatePassword(submittedpassword, dbpassword)){
-                    System.out.println("Wrong details");
-                    flag = false;
-                }
-                else{
-
-                    if(null == dbclearance) {
-                        System.out.println("Return null from db...no record");
-                    } else {
-
-                        switch (dbclearance) {
-                            case "Admin":
-                                System.out.println("User is Admin");  //such output should redirected to the log file with other login details e.g time
-                                flag =true;
-                                userIsPriviledged = true;
-                                break;
-                            case "Basic":
-                                System.out.println("User is Basic");
-                                flag =true;
-                                userIsPriviledged = false;
-                                break;
-                            default:
-                                System.out.println("User is NOT yet allowed to Log in");
-                                flag =false;
-                                userIsPriviledged = false;
-                                break;
-                        }
-                    }
-                }
-
-
-            } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
-                Logger.getLogger(CheckDatabase.class.getName()).log(Level.SEVERE, null, ex); //say whaaaat?
-            }
-            }
-            catch(Exception NoSuchElementException){
+            //try {
+            if( !HashPasswords.validatePassword(submittedpassword, dbpassword)){
+                //System.out.println("Wrong details");
                 flag = false;
-                //do something..
             }
+            else{
+                
+                //if(null == dbclearance) {
+                // System.out.println("Return null from db...no record");
+                //} else {
+                
+                //  switch (dbclearance) {
+                //     case "Admin":
+                // System.out.println("User is Admin");  //such output should redirected to the log file with other login details e.g time
+                flag =true;
+                userIsPriviledged = true;
+                //    break;
+                //   case "Basic":
+                // System.out.println("User is Basic");
+                //    flag =true;
+                //    userIsPriviledged = false;
+                //      break;
+                //   default:
+                // System.out.println("User is NOT yet allowed to Log in");
+                //     flag =false;
+                //    userIsPriviledged = false;
+                //     break;
+            }
+            //    }
+            // }
 
             //closeConnection(); //kill connection to database and return authentication flag
             closeConnection();
             return flag;
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
+            Logger.getLogger(CheckDatabase.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            //closeConnection();
+            return false;
         }
 
 }
