@@ -5,8 +5,11 @@ import com.kodexx.csorm.backend.database.CheckDatabase;
 import com.mongodb.MongoClient;
 import java.util.List;
 import org.mongodb.morphia.Datastore;
+import org.mongodb.morphia.FindAndModifyOptions;
 import org.mongodb.morphia.Morphia;
 import org.mongodb.morphia.query.Query;
+import org.mongodb.morphia.query.QueryResults;
+import org.mongodb.morphia.query.UpdateOperations;
 
 public class FilesDataService extends DataService{
 
@@ -27,13 +30,17 @@ public class FilesDataService extends DataService{
     private FilesDataService(){
         morphia.mapPackage("com.kodexx.csorm.backend.data");
         datastore.ensureIndexes();
-        //fetch the numberOfRecordsFrom Database = theNumberOfRecordsInDatabase
-        // nextFileId = theNumberOfRecordsInDatabase + 1;
-
-
+        nextFileId = getNumberOfFiles();        
     }
 
-
+    private int getNumberOfFiles(){
+        try {
+            final QueryResults<File> query = datastore.createQuery(File.class);
+            return (int) query.countAll();
+        } catch (Exception e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+    }
 
     @Override
     public synchronized List<File> getAllFiles() {
@@ -54,28 +61,26 @@ public class FilesDataService extends DataService{
             datastore.save(p);
             return;
         }
-
-
-        /*instead of looping through mongodb records,
-        *use some sort of query to find file id and update accordingly
-        */
-
-        /*for (int i = 0; i < files.size(); i++) {
-            if (files.get(i).getId() == p.getId()) {
-                files.set(i, p);
-                return;
-            }*/
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        try {
+            final Query<File> fromDb = datastore.createQuery(File.class).filter("id ==", p.getId());            
+            datastore.delete(fromDb);
+            datastore.save(p);
+        } catch (Exception e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }       
     }
 
     @Override
     public synchronized void deleteFile(int fileId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       final Query<File> fileInDb = datastore.createQuery(File.class).filter("id ==", fileId);       
+       datastore.delete(fileInDb);
     }
 
     @Override
     public synchronized File getFileById(int fileId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        final Query<File> fileInDb = datastore.createQuery(File.class).filter("id ==", fileId);
+        return fileInDb.asList().iterator().next();
     }
 
 }

@@ -45,7 +45,7 @@ public class HashPasswords
 		return diff == 0;
 	}
 
-	protected static String generateStrongPasswordHash(String password) throws NoSuchAlgorithmException, InvalidKeySpecException
+	public static String generateStrongPasswordHash(String password) throws NoSuchAlgorithmException, InvalidKeySpecException
 	{
 		int iterations = 1000;
 		char[] chars = password.toCharArray();
