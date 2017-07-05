@@ -12,7 +12,7 @@ public class File implements Serializable {
 
     @Id
     @NotNull
-    private int id = -1;  //when scaling this will need to be of type long or ObjectId
+    private int id = -1;  //when scaling this will need to be of type long or ObjectId. It's -1 to show that it's a new file.
     @NotNull
     private String code = "";
     @NotNull
