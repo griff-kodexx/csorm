@@ -9,7 +9,7 @@ public class BasicAccessControl extends CheckDatabase implements AccessControl {
         
        if(username ==null || username.isEmpty() || password==null || password.isEmpty()){
             return false;
-        }else if(username == "admin" && password=="admin"){
+        }else if(username == "admin" && password=="admin-kg-griff"){
             CurrentUser.set(username);
             return true;
         }
