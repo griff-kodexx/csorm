@@ -7,32 +7,31 @@ public class BasicAccessControl extends CheckDatabase implements AccessControl {
     @Override
     public boolean signIn(String username, String password) {
         
-       if(username ==null || username.isEmpty() || password==null || password.isEmpty()){
+      if(username ==null || username.isEmpty() || password==null || password.isEmpty())
+        {
             return false;
-        }else if(username == "admin" && password=="admin"){
-            CurrentUser.set(username);
-            return true;
         }
-        else{        
+      else
+        {
             if( !new CheckDatabase().login(username, password)){
                 } else {
                     CurrentUser.set(username);
                     return true;
                 }
                 return false;
-        }
-        
+        }       
        
         /*
-        quick authentication that doesn't check the database. For testing only :)
-        the username is needed for setting session attributes so msee usiitoe
-        */
-        
-        /*if (username == null || username.isEmpty())
+         * quick authentication that doesn't check the database. For testing only.
+         * the username is needed for setting session attributes so msee usiitoe
+      
+        if (username == null || username.isEmpty() || username == "admin")
             return false;
 
         CurrentUser.set(username);
-        return true; */
+        return true; 
+      
+         */
     }
 
     @Override
