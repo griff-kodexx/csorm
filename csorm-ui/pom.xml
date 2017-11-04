@@ -13,7 +13,7 @@
     <packaging>war</packaging>
 
     <dependencies>
-        <!-- Versions for these are configured in the parent POM -->
+        <!-- Versions for these are configured in the parent POM. Check for all other modules -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -141,5 +141,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
